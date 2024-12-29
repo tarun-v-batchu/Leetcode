@@ -23,6 +23,8 @@
 #   - -1000 <= asteroids[i] <= 1000
 #   - asteroids[i] != 0
 
+
+# SOLUTION 1 (5%, 73%) : 
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
@@ -51,5 +53,38 @@ class Solution:
             i += 1
 
         return stack
+        
+# SOLUTION 2 (65%, 8%)
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
 
+        i = 0
+
+        for aster in asteroids :
+            if aster < 0 :
+                add = True
+                while len(stack) >= 0 :
+
+                    if len(stack) == 0 :
+                        stack += [aster]
+                        break
+
+                    if stack[-1] < 0 :
+                        stack += [aster]
+                        break
+
+                    if stack[-1] + aster == 0 :
+                        stack.pop(len(stack) - 1)
+                        break
+                        
+                    if stack[-1] + aster < 0 :
+                        stack.pop(len(stack) - 1)
+                    else :
+                        break
+                
+            else :
+                stack += [aster]
+        
+        return stack
 
