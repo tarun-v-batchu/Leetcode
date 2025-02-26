@@ -22,7 +22,7 @@
 #   - 1 <= prices.length <= 5000
 #   - 0 <= prices[i] <= 1000
 
-
+# 1.
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         
@@ -37,5 +37,25 @@ class Solution:
         # print(dp)
         return dp[-1][-1]
 
+# 2.
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        mini = prices[0]
+        maxi = prices[0]
+        max_diff = 0
 
-
+        i = 0
+        while i < len(prices) :
+            
+            if prices[i] > maxi :
+                maxi = max(maxi, prices[i])
+                max_diff = max(maxi - mini, max_diff)
+            elif prices[i] < mini :
+                mini = prices[i]
+                maxi = prices[i]
+                max_diff = max(maxi - mini, max_diff)
+            
+            
+            i += 1
+        return max_diff
