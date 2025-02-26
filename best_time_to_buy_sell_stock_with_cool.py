@@ -36,26 +36,3 @@ class Solution:
                     dp[i][j] = max(dp[i][j], dp[i-2][i-2] + prices[j - 1] - prices[i - 1])
         # print(dp)
         return dp[-1][-1]
-
-# 2.
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        
-        mini = prices[0]
-        maxi = prices[0]
-        max_diff = 0
-
-        i = 0
-        while i < len(prices) :
-            
-            if prices[i] > maxi :
-                maxi = max(maxi, prices[i])
-                max_diff = max(maxi - mini, max_diff)
-            elif prices[i] < mini :
-                mini = prices[i]
-                maxi = prices[i]
-                max_diff = max(maxi - mini, max_diff)
-            
-            
-            i += 1
-        return max_diff
